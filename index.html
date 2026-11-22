@@ -238,12 +238,23 @@
     }
 
     .photo-slide-img {
-      max-height: 78vh;
-      max-width: 90vw;
+      max-height: 72vh;
+      max-width: 80vw;
       object-fit: contain;
-      mix-blend-mode: lighten;
       display: block;
       margin: 0 auto;
+      cursor: zoom-in;
+      mix-blend-mode: screen;
+      filter:
+        drop-shadow(0 0 8px rgba(255,255,255,0.6))
+        drop-shadow(0 0 2px rgba(255,255,255,1));
+      transform: rotate(-2.5deg) translateY(6px);
+      animation: stickerDrop 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes stickerDrop {
+      0%   { opacity: 0; transform: rotate(-8deg) translateY(-30px) scale(0.85); }
+      100% { opacity: 1; transform: rotate(-2.5deg) translateY(6px) scale(1); }
     }
 
     .lightbox {
@@ -269,7 +280,6 @@
       max-width: 92vw;
       max-height: 92vh;
       object-fit: contain;
-      mix-blend-mode: lighten;
       transform: scale(0.9);
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -574,6 +584,10 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeLightbox();
     });
+  </script>
+</body>
+</html>
+
   </script>
 </body>
 </html>
