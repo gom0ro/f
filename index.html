@@ -246,6 +246,64 @@
       margin: 0 auto;
     }
 
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      mix-blend-mode: lighten;
+      transform: scale(0.9);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .lightbox.open img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      background: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      transition: border-color 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .lightbox-close:hover {
+      border-color: #fff;
+    }
+
+    .photo-slide-img {
+      cursor: zoom-in;
+    }
+
     @media (max-width: 768px) {
       .side-nav {
         display: none;
@@ -279,6 +337,16 @@
   </style>
 </head>
 <body>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">
+      <svg width="18" height="18" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" viewBox="0 0 24 24">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <img src="foydka.jpg" alt="Фойдка">
+  </div>
 
   <div class="film-grain"></div>
 
@@ -451,7 +519,7 @@
   <section class="campaign-slide" id="slide-8">
     <div class="slide-bg-num">08</div>
     <div class="editorial-content">
-      <img src="foydka.jpg" alt="Фойдка" class="photo-slide-img">
+      <img src="foydka.jpg" alt="Фойдка" class="photo-slide-img" onclick="openLightbox()">
     </div>
     <a href="#slide-0" class="scroll-arrow-box">
       <div class="arrow-svg-wrap">
@@ -492,6 +560,20 @@
     }, { threshold: 0.55 });
 
     slides.forEach(slide => observer.observe(slide));
+
+    function openLightbox() {
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
   </script>
 </body>
 </html>
