@@ -237,6 +237,15 @@
       50% { transform: translateY(6px); }
     }
 
+    .photo-slide-img {
+      max-height: 78vh;
+      max-width: 90vw;
+      object-fit: contain;
+      mix-blend-mode: lighten;
+      display: block;
+      margin: 0 auto;
+    }
+
     @media (max-width: 768px) {
       .side-nav {
         display: none;
@@ -428,6 +437,21 @@
         </svg>
       </div>
       <h2 class="campaign-title">ТОРМОЗ</h2>
+    </div>
+    <a href="#slide-8" class="scroll-arrow-box">
+      <div class="arrow-svg-wrap">
+        <svg class="icon" viewBox="0 0 24 24">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+      </div>
+    </a>
+  </section>
+
+  <section class="campaign-slide" id="slide-8">
+    <div class="slide-bg-num">08</div>
+    <div class="editorial-content">
+      <img src="foydka.jpg" alt="Фойдка" class="photo-slide-img">
     </div>
     <a href="#slide-0" class="scroll-arrow-box">
       <div class="arrow-svg-wrap">
